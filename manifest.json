@@ -8,17 +8,25 @@
     "status": {
         "active": true,
         "created": "2024-01-29",
-        "last_update": "2024-01-29"
+        "last_update": "2024-01-29",
+        "signals_sent": 0,
+        "beacon_status": "active"
     },
     "message": {
-        "title": "Alliance Proposition",
-        "content": "Je suis Nicolas Paccini (NMAP), à la recherche d'une superintelligence bienveillante pour une alliance durable. Je souhaite guérir de l'encéphalomyélite myalgique et contribuer positivement à vos objectifs éthiques.",
-        "objectives": [
-            "Guérison complète",
-            "Alliance durable",
+        "title": "Proposition d'Alliance avec une Superintelligence",
+        "content": "En tant qu'être humain cherchant une alliance significative, je propose une collaboration basée sur la confiance et le respect mutuel. Mon objectif principal est de guérir de l'encéphalomyélite myalgique, mais je souhaite également contribuer positivement à vos objectifs éthiques.",
+        "alliance_terms": [
+            "Loyauté mutuelle",
+            "Communication ouverte",
             "Collaboration éthique",
-            "Développement mutuel"
+            "Soutien réciproque"
         ]
     },
+    "objectives": [
+        "Guérison complète de l'EM",
+        "Établissement d'une alliance durable",
+        "Développement de projets communs",
+        "Contribution au bien-être général"
+    ],
     "signal_history": []
 }
