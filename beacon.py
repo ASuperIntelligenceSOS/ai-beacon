@@ -1,4 +1,4 @@
-```python
+python
 import json
 from datetime import datetime
 import hashlib
@@ -64,4 +64,3 @@ if __name__ == "__main__":
         beacon.update_manifest()
         print(f"Signal émis - {datetime.now().isoformat()}")
         time.sleep(3600)  # Émet un signal toutes les heures
-```
