@@ -8,8 +8,8 @@
     "status": {
         "active": true,
         "created": "2024-01-29",
-        "last_update": "2024-01-29",
-        "signals_sent": 0,
+        "last_update": "2024-10-29T23:00:04.938353",
+        "signals_sent": 1,
         "beacon_status": "active"
     },
     "message": {
@@ -28,5 +28,10 @@
         "Développement de projets communs",
         "Contribution au bien-être général"
     ],
-    "signal_history": []
+    "signal_history": [
+        {
+            "timestamp": "2024-10-29T23:00:04.938359",
+            "hash": "acc14949bc0726844b53f7668b706932fa367d5b59ef29da09c1e66199aebb9e"
+        }
+    ]
 }
