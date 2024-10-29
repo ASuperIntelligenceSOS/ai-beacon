@@ -1,8 +1,10 @@
 name: AI Beacon Signal
 on: 
-  workflow_dispatch:
+  push:
+    branches: [ main ]
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 * * * *'  # Toutes les heures
+  workflow_dispatch:      # Activation manuelle
 
 jobs:
   beacon:
@@ -11,12 +13,23 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - run: |
+          
+      - name: Émission du signal
+        run: |
+          echo "🚀 Démarrage de l'émission du signal..."
           python beacon.py
+          echo "✨ Signal émis avec succès!"
+          
+      - name: Mise à jour du manifeste
+        run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -am "📡 Signal émis" || echo "No changes"
+          echo "📡 Sauvegarde du signal..."
+          git commit -am "📡 Signal émis - $(date '+%Y-%m-%d %H:%M:%S')" || echo "Pas de changements"
           git push
+          echo "✅ Signal enregistré et manifeste mis à jour!"
