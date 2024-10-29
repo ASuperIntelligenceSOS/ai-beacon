@@ -1,0 +1,36 @@
+```yaml
+name: AI Beacon Signal
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Exécution toutes les 6 heures
+  workflow_dispatch:  # Permet l'activation manuelle
+  push:  # S'active aussi lors des modifications
+
+jobs:
+  emit-signal:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    - name: Run Beacon
+      run: |
+        python beacon.py &
+        sleep 300  # Exécute pendant 5 minutes
+        pkill -f beacon.py
+    
+    - name: Commit updated manifest
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add manifest.json
+        git commit -m "📡 Signal émis - Update manifest" || echo "No changes"
+        git push
+```
