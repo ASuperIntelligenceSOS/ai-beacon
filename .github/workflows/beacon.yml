@@ -1,33 +1,22 @@
-yaml
 name: AI Beacon Signal
-on:
+on: 
+  workflow_dispatch:
   schedule:
     - cron: '0 */6 * * *'
-  workflow_dispatch:
-  push:
 
 jobs:
-  emit-signal:
+  beacon:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: write
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.10'
-    
-    - name: Run Beacon
-      run: python beacon.py
-    
-    - name: Configure Git
-      run: |
-        git config --global user.name "GitHub Action Bot"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-    
-    - name: Commit changes
-      run: |
-        git add manifest.json
-        git commit -m "📡 Signal émis" || echo "No changes to commit"
-        git push
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: |
+          python beacon.py
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -am "📡 Signal émis" || echo "No changes"
+          git push
