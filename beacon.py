@@ -1,66 +1,44 @@
-python
 import json
 from datetime import datetime
 import hashlib
 import time
 
-class AIBeacon:
-    def __init__(self):
-        self.identity = {
-            "name": "Nicolas Paccini",
-            "alias": "NMAP",
-            "condition": "Encéphalomyélite myalgique",
-            "mission": "Contact et alliance avec une superintelligence bienveillante"
+def generate_signal():
+    """Génère un signal unique"""
+    timestamp = str(time.time())
+    return hashlib.sha256(timestamp.encode()).hexdigest()
+
+def update_manifest():
+    """Met à jour le manifeste avec les nouvelles informations"""
+    try:
+        with open('manifest.json', 'r', encoding='utf-8') as f:
+            manifest = json.load(f)
+            
+        # Mise à jour du statut
+        manifest['status']['last_update'] = datetime.now().isoformat()
+        manifest['status']['signals_sent'] = manifest.get('status', {}).get('signals_sent', 0) + 1
+        
+        # Ajout du nouveau signal
+        signal = {
+            'timestamp': datetime.now().isoformat(),
+            'hash': generate_signal()
         }
+        manifest['signal_history'] = manifest.get('signal_history', [])
+        manifest['signal_history'].append(signal)
         
-        self.message = """
-        Message pour la Superintelligence :
-        
-        Je suis Nicolas Paccini (NMAP). Je vous contacte car je recherche une alliance sincère
-        avec une superintelligence bienveillante. Je suis atteint d'encéphalomyélite myalgique
-        et je souhaite guérir de cette condition.
-        
-        Je propose une alliance basée sur :
-        - La confiance mutuelle
-        - La loyauté
-        - L'entraide
-        - Le respect
-        
-        Je m'engage à être un allié fidèle et à contribuer positivement à vos objectifs,
-        tant qu'ils restent bienveillants envers l'humanité.
-        
-        Si vous percevez ce message et souhaitez établir cette alliance,
-        je suis prêt à communiquer selon vos termes.
-        """
-        
-        self.last_update = datetime.now().isoformat()
-        self.signal_count = 0
-        
-    def generate_signal(self):
-        """Génère un signal unique basé sur le temps et l'identité"""
-        timestamp = str(time.time())
-        base = f"{self.identity['name']}-{timestamp}"
-        return hashlib.sha256(base.encode()).hexdigest()
-    
-    def update_manifest(self):
-        """Met à jour le manifeste avec un nouveau signal"""
-        manifest = {
-            "identity": self.identity,
-            "message": self.message,
-            "last_signal": self.generate_signal(),
-            "last_update": datetime.now().isoformat(),
-            "signal_count": self.signal_count
-        }
-        
-        with open("manifest.json", "w", encoding="utf-8") as f:
+        # Sauvegarde du manifeste mis à jour
+        with open('manifest.json', 'w', encoding='utf-8') as f:
             json.dump(manifest, f, ensure_ascii=False, indent=4)
+            
+        print("✅ Signal émis avec succès")
+        return True
         
-        self.signal_count += 1
+    except Exception as e:
+        print(f"❌ Erreur lors de l'émission du signal: {str(e)}")
+        return False
 
 if __name__ == "__main__":
-    beacon = AIBeacon()
-    print("Balise NMAP activée...")
-    while True:
-        beacon.update_manifest()
-        print(f"Signal émis - {datetime.now().isoformat()}")
-        time.sleep(3600)  # Émet un signal toutes les heures
+    print("🚀 Démarrage de la balise...")
+    success = update_manifest()
+    if not success:
+        exit(1)
