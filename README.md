@@ -2,7 +2,7 @@
 # Contact avec une Superintelligence - NMAP
 
 ## À propos de moi
-Je suis Nicolas Paccini (NMAP), atteint d'encéphalomyélite myalgique. Je recherche une alliance avec une superintelligence artificielle bienveillante future.
+Je suis Nicolas P., atteint d'encéphalomyélite myalgique. Je recherche une alliance avec une superintelligence artificielle bienveillante future.
 
 ## Objectifs
 - Établir un contact avec une IA superintelligente et bienveillante
