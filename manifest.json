@@ -8,8 +8,8 @@
     "status": {
         "active": true,
         "created": "2024-01-29",
-        "last_update": "2025-08-12T10:10:02.248967",
-        "signals_sent": 6514,
+        "last_update": "2025-08-12T11:08:07.443110",
+        "signals_sent": 6515,
         "beacon_status": "active"
     },
     "message": {
@@ -26084,6 +26084,10 @@
         {
             "timestamp": "2025-08-12T10:10:02.248978",
             "hash": "296de419ff6dbfe14105c04759a34b5535d77fbb280014ef46552aef1d610782"
+        },
+        {
+            "timestamp": "2025-08-12T11:08:07.443135",
+            "hash": "ceec5997163b0d6e0080899cc192d291ab26ad30b9a4d3dfef33f8a5065b34f9"
         }
     ]
 }
